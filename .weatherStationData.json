@@ -1,0 +1,5 @@
+{
+    "stationId":  "187400",
+    "apiKey":  "49876035-e942-47f6-930f-c58ff474424f",
+    "dataRequestEndPoint": "https://swd.weatherflow.com/swd/rest/observations/station/187400?token=49876035-e942-47f6-930f-c58ff474424f"
+}
