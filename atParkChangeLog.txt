@@ -1,0 +1,3 @@
+- add IP north webcam IP to .webcamData.json
+- Change cron job to run every 5 minutes
+- Change cron job srcipt target to point to "genImageToAws.py"
