@@ -4,9 +4,14 @@ import os
 from PIL import Image, ImageDraw, ImageFont
 
 
-def getSnapshot():
+def getSnapshot(direction):
     with open(".webcamData.json") as dataFile:
-        webcamData = json.load(dataFile)
+        webcamsData = json.load(dataFile)
+        
+    for webcam in webcamsData:
+        if webcam["name"] == direction:
+            webcamData = webcam
+            break
     
     snapshotCommand = 'curl --silent --digest -u ' \
         + webcamData["userid"] + ':' + webcamData["password"] \

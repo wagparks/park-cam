@@ -59,15 +59,27 @@ def text_on_jpeg(image_path, text, output_path, font_path, font_size, text_color
         print(f"An error occurred: {e}")
         
 
-
-
-
 def main():
     
     now = datetime.now()
     picFormattedString = now.strftime("%b-%d-%Y %H:%M")
     
-    imagePath = getSnapshot()
+    with open('lastImage.txt', 'r') as file:
+        lastPicDirection = file.readline()
+        
+    with open('.webcamData.json', 'r') as file:
+        webCamData = json.load(file)
+        
+    for webCam in webCamData:
+        if webCam["name"] != lastPicDirection:
+            picDirection = webCam["name"]
+            awsFileName = webCam["awsUploadImageName"]
+            with open('lastImage.txt', 'w') as file:
+                file.writeline(picDirection)
+            break
+    
+    
+    imagePath = getSnapshot(picDirection)
     outputPath = "writeDemo-" + now.strftime("%s") +".jpeg"
      
     
@@ -123,7 +135,7 @@ def main():
     s3Bucket = "whitefish-dog-park-cam"
 
     # s3.Bucket(s3Bucket).upload_file(outputPath, outputPath)
-    s3.Bucket(s3Bucket).upload_file(outputPath, "images/currentImage.jpeg")
+    s3.Bucket(s3Bucket).upload_file(outputPath, awsFileName)
     
     subprocess.run(["rm", outputPath])
     
