@@ -75,7 +75,7 @@ def main():
             picDirection = webCam["name"]
             awsFileName = webCam["awsUploadImageName"]
             with open('lastImage.txt', 'w') as file:
-                file.writeline(picDirection)
+                file.writelines(picDirection)
             break
     
     
