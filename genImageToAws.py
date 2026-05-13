@@ -136,6 +136,8 @@ def main():
 
     # s3.Bucket(s3Bucket).upload_file(outputPath, outputPath)
     s3.Bucket(s3Bucket).upload_file(outputPath, awsFileName)
+    s3.Bucket(s3Bucket).upload_file(outputPath, "images/currentImage.jpeg")
+    
     
     subprocess.run(["rm", outputPath])
     
